@@ -1,9 +1,9 @@
 from PyQt5 import QtWidgets
 from PyQt5 import QtCore, Qt
 
-from passwordGenerator import Ui_GeneratorWindow
-from passwordChecker import Ui_CheckerWindow
+import generatorController
 from passcraftMainScreen import Ui_MainScreen
+from generatorController import Controller
 from checkerController import Controller
 QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
 QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
@@ -20,10 +20,8 @@ class MainScreenController:
         self.ui.checkerButton.clicked.connect(self.open_checker)
 
     def open_generator(self):
-        self.windowGenerator = QtWidgets.QMainWindow()
-        self.generator_ui = Ui_GeneratorWindow()
-        self.generator_ui.setupUi(self.windowGenerator)
-        self.windowGenerator.show()
+        self.generatorController = generatorController.Controller()
+        self.generatorController.show()
 
     def open_checker(self):
         self.checkerController = Controller()
@@ -37,4 +35,3 @@ class MainScreenController:
 if __name__ == '__main__':
     controller = MainScreenController()
     controller.run()
-
