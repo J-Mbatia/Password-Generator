@@ -13,13 +13,14 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
 
         self.displayGenerator.setText('')
 
-        self.generateButton.clicked.connect(lambda: self.display_password())
+        self.lengthScrollBar.sliderMoved.connect(lambda: self.change_scroll())
+        self.generateButton.clicked.connect(lambda: self.words_password())
         self.checkUppercase.clicked.connect(lambda: self.uppercase())
         self.checkSymbols.clicked.connect(lambda: self.symbols())
 
     def words_password(self):
         try:
-            password_length = int(input('Enter Your Password Length (8-64 characters): '))
+            password_length = int(str(self.lengthScrollBar.value()))
             extra_password_length = password_length
 
             if password_length < 8:
@@ -27,7 +28,7 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
             elif password_length > 64:
                 raise SyntaxError
 
-            words = []
+            words = ''
             word1_len = 0
             word2_len = 0
             word3_len = 0
@@ -58,7 +59,7 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
                         word1 = linecache.getline('words_alpha.txt', random_word1)
                         word1_len = (len(word1) - 1)
                 extra_password_length -= word1_len
-                words.append(word1)
+                words += word1.strip('\n') + " "
 
             if (password_length >= 16) and (password_length <= 64):
                 random_word2 = random.randint(1, file_length)
@@ -70,7 +71,7 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
                         word2 = linecache.getline('words_alpha.txt', random_word2)
                         word2_len = (len(word2) - 1)
                 extra_password_length -= word2_len
-                words.append(word2)
+                words += word2.strip('\n') + " "
 
             if (password_length >= 30) and (password_length <= 64):
                 random_word3 = random.randint(1, file_length)
@@ -82,7 +83,7 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
                         word3 = linecache.getline('words_alpha.txt', random_word3)
                         word3_len = (len(word3) - 1)
                 extra_password_length -= word3_len
-                words.append(word3)
+                words += word3.strip('\n') + " "
 
             if (password_length >= 41) and (password_length <= 64):
                 random_word4 = random.randint(1, file_length)
@@ -94,7 +95,7 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
                         word4 = linecache.getline('words_alpha.txt', random_word4)
                         word4_len = (len(word4) - 1)
                 extra_password_length -= word4_len
-                words.append(word4)
+                words += word4.strip('\n') + " "
 
             if (password_length >= 55) and (password_length <= 64):
                 random_word5 = random.randint(1, file_length)
@@ -106,17 +107,20 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
                         word5 = linecache.getline('words_alpha.txt', random_word5)
                         word5_len = (len(word5) - 1)
                 extra_password_length -= word5_len
-                words.append(word5)
+                words += word5.strip('\n') + " "
 
             word_len = word1_len + word2_len + word3_len + word4_len + word5_len
-            print(word_len)
 
-            print(words)
+            self.displayGenerator.setText(f'{words}')
+
         except SyntaxError:
             self.displayGenerator.setText('INVALID')
 
+    def change_scroll(self):
+        self.labelLength.setText(str(self.lengthScrollBar.value()))
+
     def display_password(self):
-        self.displayGenerator.setText('words')
+        self.words_password()
 
     def uppercase(self):
         pass
