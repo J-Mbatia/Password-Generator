@@ -35,17 +35,23 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
             word4_len = 0
             word5_len = 0
             length_words = 0
+            num_words = 0
 
             if (password_length >= 8) and (password_length < 16):
                 length_words = math.floor(password_length / 1)
+                num_words =  1
             elif (password_length >= 16) and (password_length < 30):
                 length_words = math.floor(password_length / 2)
+                num_words = 2
             elif (password_length >= 30) and (password_length < 41):
                 length_words = math.floor(password_length / 3)
+                num_words = 3
             elif (password_length >= 41) and (password_length < 55):
                 length_words = math.floor(password_length / 4)
+                num_words = 4
             elif (password_length >= 55) and (password_length <= 64):
                 length_words = math.floor(password_length / 5)
+                num_words = 5
 
             file_length = 370105
 
@@ -113,6 +119,7 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
 
             remaining = int(password_length) - int(word_len)
             numbers = []
+            symbols = ['(', ')', '!', '?', '%', '$', '@', '#', '&', '*']
 
             num = 0
             while num <= remaining:
@@ -130,18 +137,113 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
                     num += 1
 
             if 'o' in display:
-                display = display.replace('o', '0')
+                display = display.replace('o', '0', num_words)
             if 'g' in display:
-                display = display.replace('g', '9')
+                display = display.replace('g', '9', num_words)
             if 'l' in display:
-                display = display.replace('l', '1')
+                display = display.replace('l', '1', num_words)
+            if 'e' in display:
+                display = display.replace('e', '3', num_words)
+
+            times = 0
+            if self.uppercase() == True:
+                while times < 1:
+                    if 'a' in display:
+                        display = display.replace('a', 'A', 1)
+                        times += 1
+                    if 'b' in display:
+                        display = display.replace('b', 'B', 1)
+                        times += 1
+                    if 'c' in display:
+                        display = display.replace('c', 'C', 1)
+                        times += 1
+                    if 'd' in display:
+                        display = display.replace('d', 'D', 1)
+                        times += 1
+                    if 'e' in display:
+                        display = display.replace('e', 'E', 1)
+                        times += 1
+                    if 'f' in display:
+                        display = display.replace('f', 'F', 1)
+                        times += 1
+                    if 'g' in display:
+                        display = display.replace('g', 'G', 1)
+                        times += 1
+                    if 'h' in display:
+                        display = display.replace('h', 'H', 1)
+                        times += 1
+                    if 'i' in display:
+                        display = display.replace('i', 'I', 1)
+                        times += 1
+                    if 'j' in display:
+                        display = display.replace('j', 'J', 1)
+                        times += 1
+                    if 'k' in display:
+                        display = display.replace('k', 'K', 1)
+                        times += 1
+                    if 'l' in display:
+                        display = display.replace('l', 'L', 1)
+                        times += 1
+                    if 'm' in display:
+                        display = display.replace('m', 'M', 1)
+                        times += 1
+                    if 'n' in display:
+                        display = display.replace('n', 'N', 1)
+                        times += 1
+                    if 'o' in display:
+                        display = display.replace('o', 'O', 1)
+                        times += 1
+                    if 'p' in display:
+                        display = display.replace('p', 'P', 1)
+                        times += 1
+                    if 'q' in display:
+                        display = display.replace('q', 'Q', 1)
+                        times += 1
+                    if 'r' in display:
+                        display = display.replace('r', 'R', 1)
+                        times += 1
+                    if 's' in display:
+                        display = display.replace('s', 'S', 1)
+                        times += 1
+                    if 't' in display:
+                        display = display.replace('t', 'T', 1)
+                        times += 1
+                    if 'u' in display:
+                        display = display.replace('u', 'U', 1)
+                        times += 1
+                    if 'v' in display:
+                        display = display.replace('v', 'V', 1)
+                        times += 1
+                    if 'w' in display:
+                        display = display.replace('w', 'W', 1)
+                        times += 1
+                    if 'x' in display:
+                        display = display.replace('x', 'X', 1)
+                        times += 1
+                    if 'y' in display:
+                        display = display.replace('y', 'Y', 1)
+                        times += 1
+                    if 'z' in display:
+                        display = display.replace('z', 'Z', 1)
+                        times += 1
+
+            if self.symbols() == True:
+                if 'i' in display:
+                    display = display.replace('i', '!', num_words)
+                if 's' in display:
+                    display = display.replace('s', '$', num_words)
+                if 'S' in display:
+                    display = display.replace('S', '$', num_words)
+                if 'a' in display:
+                    display = display.replace('a', '@', num_words)
+                if 'A' in display:
+                    display = display.replace('A', '@', num_words)
+                if 't' in display:
+                    display = display.replace('t', '+', num_words)
+                if 'x' in display:
+                    display = display.replace('x', '*', num_words)
 
             self.displayGenerator.setText(display)
-
-            if self.uppercase() == True:
-                self.displayGenerator.setText('UPPer')
-            if self.symbols() == True:
-                self.displayGenerator.setText('SYMbols')
 
         except SyntaxError:
             self.displayGenerator.setText('INVALID')
@@ -150,61 +252,7 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
         self.labelLength.setText(str(self.lengthScrollBar.value()))
 
     def uppercase(self):
-        uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
         if self.checkUppercase.isChecked():
-            if 'a' in display:
-                display = display.replace('a', 'A')
-            if 'b' in display:
-                display = display.replace('b', 'B')
-            if 'c' in display:
-                display = display.replace('c', 'C')
-            if 'd' in display:
-                display = display.replace('d', 'D')
-            if 'e' in display:
-                display = display.replace('e', 'E')
-            if 'f' in display:
-                display = display.replace('f', 'F')
-            if 'g' in display:
-                display = display.replace('g', 'G')
-            if 'h' in display:
-                display = display.replace('h', 'H')
-            if 'i' in display:
-                display = display.replace('i', 'I')
-            if 'j' in display:
-                display = display.replace('j', 'J')
-            if 'k' in display:
-                display = display.replace('k', 'K')
-            if 'l' in display:
-                display = display.replace('l', 'L')
-            if 'm' in display:
-                display = display.replace('m', 'M')
-            if 'n' in display:
-                display = display.replace('n', 'N')
-            if 'o' in display:
-                display = display.replace('o', 'O')
-            if 'p' in display:
-                display = display.replace('p', 'P')
-            if 'q' in display:
-                display = display.replace('q', 'Q')
-            if 'r' in display:
-                display = display.replace('r', 'R')
-            if 's' in display:
-                display = display.replace('s', 'S')
-            if 't' in display:
-                display = display.replace('t', 'T')
-            if 'u' in display:
-                display = display.replace('u', 'U')
-            if 'v' in display:
-                display = display.replace('v', 'V')
-            if 'w' in display:
-                display = display.replace('w', 'W')
-            if 'x' in display:
-                display = display.replace('x', 'X')
-            if 'y' in display:
-                display = display.replace('y', 'Y')
-            if 'z' in display:
-                display = display.replace('z', 'Z')
             return True
         else:
             return False
@@ -214,8 +262,3 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
             return True
         else:
             return False
-
-    def display_password(self):
-        pass
-
-  
