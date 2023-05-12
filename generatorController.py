@@ -14,11 +14,11 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
         self.displayGenerator.setText('')
 
         self.lengthScrollBar.sliderMoved.connect(lambda: self.change_scroll())
-        self.generateButton.clicked.connect(lambda: self.words_password())
+        self.generateButton.clicked.connect(lambda: self.password())
         self.checkUppercase.clicked.connect(lambda: self.uppercase())
         self.checkSymbols.clicked.connect(lambda: self.symbols())
 
-    def words_password(self):
+    def password(self):
         try:
             password_length = int(str(self.lengthScrollBar.value()))
             extra_password_length = password_length
@@ -71,7 +71,7 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
                         word2 = linecache.getline('words_alpha.txt', random_word2)
                         word2_len = (len(word2) - 1)
                 extra_password_length -= word2_len
-                words.append(word1.strip('\n'))
+                words.append(word2.strip('\n'))
 
             if (password_length >= 30) and (password_length <= 64):
                 random_word3 = random.randint(1, file_length)
@@ -83,7 +83,7 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
                         word3 = linecache.getline('words_alpha.txt', random_word3)
                         word3_len = (len(word3) - 1)
                 extra_password_length -= word3_len
-                words.append(word1.strip('\n'))
+                words.append(word3.strip('\n'))
 
             if (password_length >= 41) and (password_length <= 64):
                 random_word4 = random.randint(1, file_length)
@@ -95,7 +95,7 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
                         word4 = linecache.getline('words_alpha.txt', random_word4)
                         word4_len = (len(word4) - 1)
                 extra_password_length -= word4_len
-                words.append(word1.strip('\n'))
+                words.append(word4.strip('\n'))
 
             if (password_length >= 55) and (password_length <= 64):
                 random_word5 = random.randint(1, file_length)
@@ -107,10 +107,41 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
                         word5 = linecache.getline('words_alpha.txt', random_word5)
                         word5_len = (len(word5) - 1)
                 extra_password_length -= word5_len
-                words.append(word1.strip('\n'))
+                words.append(word5.strip('\n'))
 
             word_len = word1_len + word2_len + word3_len + word4_len + word5_len
 
+            remaining = int(password_length) - int(word_len)
+            numbers = []
+
+            num = 0
+            while num <= remaining:
+                rand = random.randint(0, 9)
+                numbers.append(rand)
+                num += 1
+
+            display = ''
+            num = 0
+            if remaining >= len(words):
+                while num < len(numbers):
+                    if num < len(words):
+                        display += f'{words[num]}'
+                    display += f'{numbers[num]}'
+                    num += 1
+
+            if 'o' in display:
+                display = display.replace('o', '0')
+            if 'g' in display:
+                display = display.replace('g', '9')
+            if 'l' in display:
+                display = display.replace('l', '1')
+
+            self.displayGenerator.setText(display)
+
+            if self.uppercase() == True:
+                self.displayGenerator.setText('UPPer')
+            if self.symbols() == True:
+                self.displayGenerator.setText('SYMbols')
 
         except SyntaxError:
             self.displayGenerator.setText('INVALID')
@@ -118,11 +149,17 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
     def change_scroll(self):
         self.labelLength.setText(str(self.lengthScrollBar.value()))
 
-    def display_password(self):
-        pass
-
     def uppercase(self):
-        pass
+        if self.checkUppercase.isChecked():
+            return True
+        else:
+            return False
 
     def symbols(self):
+        if self.checkSymbols.isChecked():
+            return True
+        else:
+            return False
+
+    def display_password(self):
         pass
