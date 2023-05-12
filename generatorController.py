@@ -13,28 +13,25 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
 
         self.displayGenerator.setText('')
 
-        self.checkUppercase.clicked.connect(lambda: self.Uppercase())
-        self.checkSymbols.clikced.connect(lambda: self.Symbols())
+        self.generateButton.clicked.connect(lambda: self.display_password())
+        self.checkUppercase.clicked.connect(lambda: self.uppercase())
+        self.checkSymbols.clicked.connect(lambda: self.symbols())
 
-    def words_password(self, words):
+    def words_password(self):
         try:
             password_length = int(input('Enter Your Password Length (8-64 characters): '))
-            test_password_length = password_length
+            extra_password_length = password_length
 
             if password_length < 8:
                 raise SyntaxError
             elif password_length > 64:
                 raise SyntaxError
 
-            word1 = ''
+            words = []
             word1_len = 0
-            word2 = ''
             word2_len = 0
-            word3 = ''
             word3_len = 0
-            word4 = ''
             word4_len = 0
-            word5 = ''
             word5_len = 0
             length_words = 0
 
@@ -60,7 +57,8 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
                         random_word1 = random.randint(1, file_length)
                         word1 = linecache.getline('words_alpha.txt', random_word1)
                         word1_len = (len(word1) - 1)
-                test_password_length -= word1_len
+                extra_password_length -= word1_len
+                words.append(word1)
 
             if (password_length >= 16) and (password_length <= 64):
                 random_word2 = random.randint(1, file_length)
@@ -71,7 +69,8 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
                         random_word2 = random.randint(1, file_length)
                         word2 = linecache.getline('words_alpha.txt', random_word2)
                         word2_len = (len(word2) - 1)
-                test_password_length -= word2_len
+                extra_password_length -= word2_len
+                words.append(word2)
 
             if (password_length >= 30) and (password_length <= 64):
                 random_word3 = random.randint(1, file_length)
@@ -82,7 +81,8 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
                         random_word3 = random.randint(1, file_length)
                         word3 = linecache.getline('words_alpha.txt', random_word3)
                         word3_len = (len(word3) - 1)
-                test_password_length -= word3_len
+                extra_password_length -= word3_len
+                words.append(word3)
 
             if (password_length >= 41) and (password_length <= 64):
                 random_word4 = random.randint(1, file_length)
@@ -93,7 +93,8 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
                         random_word4 = random.randint(1, file_length)
                         word4 = linecache.getline('words_alpha.txt', random_word4)
                         word4_len = (len(word4) - 1)
-                test_password_length -= word4_len
+                extra_password_length -= word4_len
+                words.append(word4)
 
             if (password_length >= 55) and (password_length <= 64):
                 random_word5 = random.randint(1, file_length)
@@ -104,20 +105,18 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
                         random_word5 = random.randint(1, file_length)
                         word5 = linecache.getline('words_alpha.txt', random_word5)
                         word5_len = (len(word5) - 1)
-                test_password_length -= word5_len
+                extra_password_length -= word5_len
+                words.append(word5)
 
             word_len = word1_len + word2_len + word3_len + word4_len + word5_len
             print(word_len)
-            words = word1.strip() + " " + word2.strip() + " " + word3.strip() + " " + word4.strip() + " " + word5.strip()
+
             print(words)
-            return words
         except SyntaxError:
-            print("INVALID")
-        except RuntimeError:
-            print("ERROR")
+            self.displayGenerator.setText('INVALID')
 
     def display_password(self):
-        pass
+        self.displayGenerator.setText('words')
 
     def uppercase(self):
         pass
