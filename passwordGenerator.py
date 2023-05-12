@@ -53,7 +53,7 @@ class Ui_GeneratorWindow(object):
         self.checkSymbols.setObjectName("checkSymbols")
         self.lengthScrollBar = QtWidgets.QScrollBar(self.centralwidget)
         self.lengthScrollBar.setGeometry(QtCore.QRect(120, 190, 160, 16))
-        self.lengthScrollBar.setMinimum(7)
+        self.lengthScrollBar.setMinimum(8)
         self.lengthScrollBar.setMaximum(64)
         self.lengthScrollBar.setProperty("value", 8)
         self.lengthScrollBar.setTracking(True)
