@@ -150,7 +150,61 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
         self.labelLength.setText(str(self.lengthScrollBar.value()))
 
     def uppercase(self):
+        uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
         if self.checkUppercase.isChecked():
+            if 'a' in display:
+                display = display.replace('a', 'A')
+            if 'b' in display:
+                display = display.replace('b', 'B')
+            if 'c' in display:
+                display = display.replace('c', 'C')
+            if 'd' in display:
+                display = display.replace('d', 'D')
+            if 'e' in display:
+                display = display.replace('e', 'E')
+            if 'f' in display:
+                display = display.replace('f', 'F')
+            if 'g' in display:
+                display = display.replace('g', 'G')
+            if 'h' in display:
+                display = display.replace('h', 'H')
+            if 'i' in display:
+                display = display.replace('i', 'I')
+            if 'j' in display:
+                display = display.replace('j', 'J')
+            if 'k' in display:
+                display = display.replace('k', 'K')
+            if 'l' in display:
+                display = display.replace('l', 'L')
+            if 'm' in display:
+                display = display.replace('m', 'M')
+            if 'n' in display:
+                display = display.replace('n', 'N')
+            if 'o' in display:
+                display = display.replace('o', 'O')
+            if 'p' in display:
+                display = display.replace('p', 'P')
+            if 'q' in display:
+                display = display.replace('q', 'Q')
+            if 'r' in display:
+                display = display.replace('r', 'R')
+            if 's' in display:
+                display = display.replace('s', 'S')
+            if 't' in display:
+                display = display.replace('t', 'T')
+            if 'u' in display:
+                display = display.replace('u', 'U')
+            if 'v' in display:
+                display = display.replace('v', 'V')
+            if 'w' in display:
+                display = display.replace('w', 'W')
+            if 'x' in display:
+                display = display.replace('x', 'X')
+            if 'y' in display:
+                display = display.replace('y', 'Y')
+            if 'z' in display:
+                display = display.replace('z', 'Z')
             return True
         else:
             return False
@@ -163,3 +217,5 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
 
     def display_password(self):
         pass
+
+  
