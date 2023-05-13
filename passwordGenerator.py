@@ -107,3 +107,4 @@ if __name__ == "__main__":
     ui.setupUi(GeneratorWindow)
     GeneratorWindow.show()
     sys.exit(app.exec_())
+    
