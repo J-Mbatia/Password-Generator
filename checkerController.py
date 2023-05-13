@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import *
-from passwordChecker import *
+from passwordCheckerGUI import *
 
 
 class Controller(QMainWindow, Ui_CheckerWindow):
@@ -26,13 +26,13 @@ class Controller(QMainWindow, Ui_CheckerWindow):
         if len(password) < 8 or (len(password) < 12 and password.isalpha()) or (
                 len(password) >= 8 and not includeUppercase) or (len(password) >= 8 and not includeNumbers):
             self.displayStrength.setText('Weak')
-            self.displayRequirement.setText('Password should have more than 8 characters, 1 uppercase letter and 1 '
+            self.displayRequirement.setText('Password should have more than 8 characters, 1 uppercase letter \nand 1 '
                                             'number.')
 
         elif (8 <= len(password) <= 11 and includeUppercase and includeNumbers) or (
                 8 <= len(password) <= 11 and includeNumbers and includeSymbols):
             self.displayStrength.setText('Medium')
-            self.displayRequirement.setText('Password should have at least 12 characters, include uppercase letters, '
+            self.displayRequirement.setText('Password should have at least 12 characters, include uppercase \nletters, '
                                             'numbers, and symbols.')
 
         elif len(password) >= 12 and includeSymbols and includeNumbers and includeUppercase:
