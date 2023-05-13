@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import *
-from passwordGenerator import *
+from passwordGeneratorGUI import *
 import random
 import linecache
 import math
@@ -39,7 +39,7 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
 
             if (password_length >= 8) and (password_length < 16):
                 length_words = math.floor(password_length / 1)
-                num_words =  1
+                num_words = 1
             elif (password_length >= 16) and (password_length < 30):
                 length_words = math.floor(password_length / 2)
                 num_words = 2
@@ -147,114 +147,101 @@ class Controller(QMainWindow, Ui_GeneratorWindow):
 
             times = 0
             if self.uppercase() == True:
-                while times < (num_words * 2):
-
+                while times < 1:
+                    if 'a' in display:
+                        display = display.replace('a', 'A', 1)
+                        times += 1
+                    if 'b' in display:
+                        display = display.replace('b', 'B', 1)
+                        times += 1
+                    if 'c' in display:
+                        display = display.replace('c', 'C', 1)
+                        times += 1
+                    if 'd' in display:
+                        display = display.replace('d', 'D', 1)
+                        times += 1
+                    if 'e' in display:
+                        display = display.replace('e', 'E', 1)
+                        times += 1
                     if 'f' in display:
                         display = display.replace('f', 'F', 1)
                         times += 1
-                    elif 'k' in display:
-                        display = display.replace('k', 'K', 1)
-                        times += 1
-                    elif 'n' in display:
-                        display = display.replace('n', 'N', 1)
-                        times += 1
-                    elif 'y' in display:
-                        display = display.replace('y', 'Y', 1)
-                        times += 1
-                    elif 'j' in display:
-                        display = display.replace('j', 'J', 1)
-                        times += 1
-                    elif 'r' in display:
-                        display = display.replace('r', 'R', 1)
-                        times += 1
-                    elif 's' in display:
-                        display = display.replace('s', 'S', 1)
-                        times += 1
-                    elif 'c' in display:
-                        display = display.replace('c', 'C', 1)
-                        times += 1
-                    elif 'z' in display:
-                        display = display.replace('z', 'Z', 1)
-                        times += 1
-                    elif 'd' in display:
-                        display = display.replace('d', 'D', 1)
-                        times += 1
-                    elif 'w' in display:
-                        display = display.replace('w', 'W', 1)
-                        times += 1
-                    elif 'g' in display:
+                    if 'g' in display:
                         display = display.replace('g', 'G', 1)
                         times += 1
-                    elif 'u' in display:
-                        display = display.replace('u', 'U', 1)
-                        times += 1
-                    elif 'o' in display:
-                        display = display.replace('o', 'O', 1)
-                        times += 1
-                    elif 'h' in display:
+                    if 'h' in display:
                         display = display.replace('h', 'H', 1)
                         times += 1
-                    elif 'b' in display:
-                        display = display.replace('b', 'B', 1)
-                        times += 1
-                    elif 'q' in display:
-                        display = display.replace('q', 'Q', 1)
-                        times += 1
-                    elif 'i' in display:
+                    if 'i' in display:
                         display = display.replace('i', 'I', 1)
                         times += 1
-                    elif 'l' in display:
+                    if 'j' in display:
+                        display = display.replace('j', 'J', 1)
+                        times += 1
+                    if 'k' in display:
+                        display = display.replace('k', 'K', 1)
+                        times += 1
+                    if 'l' in display:
                         display = display.replace('l', 'L', 1)
                         times += 1
-                    elif 'x' in display:
-                        display = display.replace('x', 'X', 1)
-                        times += 1
-                    elif 'm' in display:
+                    if 'm' in display:
                         display = display.replace('m', 'M', 1)
                         times += 1
-                    elif 'p' in display:
+                    if 'n' in display:
+                        display = display.replace('n', 'N', 1)
+                        times += 1
+                    if 'o' in display:
+                        display = display.replace('o', 'O', 1)
+                        times += 1
+                    if 'p' in display:
                         display = display.replace('p', 'P', 1)
                         times += 1
-                    elif 't' in display:
+                    if 'q' in display:
+                        display = display.replace('q', 'Q', 1)
+                        times += 1
+                    if 'r' in display:
+                        display = display.replace('r', 'R', 1)
+                        times += 1
+                    if 's' in display:
+                        display = display.replace('s', 'S', 1)
+                        times += 1
+                    if 't' in display:
                         display = display.replace('t', 'T', 1)
                         times += 1
-                    elif 'v' in display:
+                    if 'u' in display:
+                        display = display.replace('u', 'U', 1)
+                        times += 1
+                    if 'v' in display:
                         display = display.replace('v', 'V', 1)
                         times += 1
-                    elif 'a' in display:
-                        display = display.replace('a', 'A', 1)
+                    if 'w' in display:
+                        display = display.replace('w', 'W', 1)
                         times += 1
-                    elif 'e' in display:
-                        display = display.replace('e', 'E', 1)
+                    if 'x' in display:
+                        display = display.replace('x', 'X', 1)
+                        times += 1
+                    if 'y' in display:
+                        display = display.replace('y', 'Y', 1)
+                        times += 1
+                    if 'z' in display:
+                        display = display.replace('z', 'Z', 1)
                         times += 1
 
-            times = 0
             if self.symbols() == True:
-                 while times < (num_words * 2):
-                    if 'q' in display:
-                        display = display.replace('q', '?', 1)
-                        times += 1
-                    elif 'i' in display:
-                        display = display.replace('i', '!', 1)
-                        times += 1
-                    elif 's' in display:
-                        display = display.replace('s', '$', 1)
-                        times += 1
-                    elif 'S' in display:
-                        display = display.replace('S', '$', 1)
-                        times += 1
-                    elif 'a' in display:
-                        display = display.replace('a', '@', 1)
-                        times += 1
-                    elif 'A' in display:
-                        display = display.replace('A', '@', 1)
-                        times += 1
-                    elif 't' in display:
-                        display = display.replace('t', '+', 1)
-                        times += 1
-                    elif 'x' in display:
-                        display = display.replace('x', '*', 1)
-                        times += 1
+                if 'i' in display:
+                    display = display.replace('i', '!', num_words)
+                if 's' in display:
+                    display = display.replace('s', '$', num_words)
+                if 'S' in display:
+                    display = display.replace('S', '$', num_words)
+                if 'a' in display:
+                    display = display.replace('a', '@', num_words)
+                if 'A' in display:
+                    display = display.replace('A', '@', num_words)
+                if 't' in display:
+                    display = display.replace('t', '+', num_words)
+                if 'x' in display:
+                    display = display.replace('x', '*', num_words)
 
             self.displayGenerator.setText(display)
 
