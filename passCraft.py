@@ -2,7 +2,7 @@ from PyQt5 import QtWidgets
 from PyQt5 import QtCore, Qt
 
 import generatorController
-from passcraftMainScreen import Ui_MainScreen
+from passCraftGUI import Ui_MainScreen
 from generatorController import Controller
 from checkerController import Controller
 QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
